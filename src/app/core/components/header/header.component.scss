@@ -1,0 +1,33 @@
+@import '../../../../assets/scss/base';
+
+.header {
+    padding: 40px 25px;
+    user-select: none;
+    h4 {
+        color: $colorSubtitle;
+        margin: 0 0 5px 0;
+    }
+
+    h1 {
+        color: $colorTitle;
+        margin: 0;
+    }
+}
+
+@media (max-width: $mq-mobile-device) {
+    .header {
+        padding: 40px 25px;
+        user-select: none;
+        h4 {
+            color: $colorSubtitle;
+            margin: 0 0 5px 0;
+            font-size: 14px;
+        }
+
+        h1 {
+            color: $colorTitle;
+            margin: 0;
+            font-size: 28px;
+        }
+    }
+}

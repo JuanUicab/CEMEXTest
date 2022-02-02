@@ -1,0 +1,7 @@
+@import '../../../assets/scss/base';
+
+.banner {
+    height: 60px;
+    background: $backgroundBanner;
+    border-bottom: 2px solid $backgroundBottomBanner;
+}

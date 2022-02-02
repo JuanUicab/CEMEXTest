@@ -1,0 +1,131 @@
+@import '../../../../assets/scss/base';
+
+.material-icons {
+    color: #49aef6;
+}
+
+.filtersContainer {
+    background-color: $backgroundFiltersContainer;
+    padding: 10px 15px;
+    margin: 0 25px 30px 25px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+
+    .search {
+        margin-right: 10px;
+
+        .inputIcon {
+            padding-right: 25px;
+            background: url('../../../../assets/icons/search.png') no-repeat right;
+            background-size: 35px;
+            background-color: white;
+
+            border: 1px solid #b0b0b0;
+            height: 32px;
+            border-radius: 5px;
+            padding-left: 15px;
+            padding-right: 30px;
+            background-position-x: 98%;
+        }
+    }
+
+    .btnfilters {
+        cursor: pointer;
+
+        .btnShowFilters {
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            background-color: transparent;
+            border: 1px solid transparent;
+            font-size: 16px;
+            color: #49aef6;
+            font-weight: 500;
+            cursor: pointer;
+            margin-right: 15px;
+
+            .material-icons {
+                margin-right: 5px;
+            }
+        }
+    }
+
+    .filters {
+        user-select: none;
+
+        h5 {
+            padding: 4px 10px;
+            background-color: white;
+            display: inline-block;
+            border-radius: 5px;
+            margin: 0;
+            margin-right: 20px;
+            top: 5px;
+
+            .text {
+                top: 3px;
+                position: relative;
+            }
+
+            .close {
+                float: right;
+                position: relative;
+                user-select: none;
+                cursor: pointer;
+                margin-left: 10px;
+            }
+        }
+    }
+
+    .clearFilters {
+        margin: auto 0 auto auto;
+
+        .btnClearFilters {
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            background-color: transparent;
+            border: 1px solid transparent;
+            font-size: 16px;
+            color: #49aef6;
+            font-weight: 500;
+            cursor: pointer;
+        }
+    }
+}
+
+@media (max-width: $mq-mobile-device) {
+    .filtersContainer {
+        display: block;
+        .search {
+            width: 100%;
+            margin-bottom: 10px;
+
+            .inputIcon {
+                width: -webkit-fill-available;
+            }
+        }
+
+        .filters {
+            margin: 20px 0;
+
+            h5 {
+                padding: 8px 15px;
+                background-color: white;
+                margin: 10px 0;
+                display: block;
+
+                span {
+                    float: right;
+                    top: -4px;
+                    position: relative;
+                    user-select: none;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

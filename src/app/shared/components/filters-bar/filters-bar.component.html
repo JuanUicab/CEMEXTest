@@ -1,0 +1,79 @@
+<div class="filtersContainer">
+    <div class="search">
+        <input type="text" [formControl]="SEARCH_NAME" class="inputIcon" value placeholder="Search for Name" />
+    </div>
+    <div class="btnfilters">
+        <button type="button" class="btnShowFilters" (click)="showFilters('custom-modal-1')">
+            <span class="material-icons"> tune </span>
+            Filters
+        </button>
+    </div>
+    <div class="filters">
+        <h5 *ngIf="FORM ? FORM.controls['Active'].value : false"><span class="text">Status: Active</span> <span (click)="unmarkFilter('Active')" class="material-icons close"> close </span></h5>
+        <h5 *ngIf="FORM ? FORM.controls['Pending_Approval'].value : false"><span class="text">Status: Pending Approval</span> <span (click)="unmarkFilter('Pending_Approval')" class="material-icons close"> close </span></h5>
+        <h5 *ngIf="FORM ? FORM.controls['Waiting_Compensation'].value : false"><span class="text">Status: Waiting Compensation</span> <span (click)="unmarkFilter('Waiting_Compensation')" class="material-icons close"> close </span></h5>
+        <h5 *ngIf="FORM.controls['Phase'].value !== null"><span class="text">Phase: {{FORM.controls['Phase'].value.Name}}</span> <span (click)="unmarkFilter('Phase')" class="material-icons close"> close </span></h5>
+        <h5 *ngIf="FORM.controls['Month'].value !== null"><span class="text">Month: {{FORM.controls['Month'].value.Name}}</span> <span (click)="unmarkFilter('Month')" class="material-icons close"> close </span></h5>
+    </div>
+    <div class="clearFilters">
+        <button type="button" class="btnClearFilters" (click)="clearFilters()">Clear Filters</button>
+    </div>
+</div>
+
+<app-modal ID="custom-modal-1">
+    <div class="title">
+        <h1>Filter Expenses <span class="material-icons" (click)="closeModal('custom-modal-1')"> close </span></h1>
+    </div>
+    <form [formGroup]="FORM" *ngIf="FORM">
+        <div class="form-group">
+            <label for="">Status</label> <br />
+            <ul>
+                <li>
+                    <label class="container"
+                        >Active
+                        <input type="checkbox" id="active" (change)="updateTable('1')" formControlName="Active" />
+                        <span class="checkmark"></span>
+                    </label>
+                </li>
+
+                <li>
+                    <label class="container"
+                        >Pending Approval
+                        <input type="checkbox" id="pendingApproval" (change)="updateTable('2')" formControlName="Pending_Approval" />
+                        <span class="checkmark"></span>
+                    </label>
+                </li>
+
+                <li>
+                    <label class="container"
+                        >Waiting Compensation
+                        <input type="checkbox" id="waitingCompensation" (change)="updateTable('3')" formControlName="Waiting_Compensation" />
+                        <span class="checkmark"></span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="form-group inlineSelect">
+            <label for="phase">Phase</label>
+            <details>
+                <summary>Select one or more phases {{ SELECTED_PHASES.length > 0 ? TOTAL_PHASES : '' }}</summary>
+                <ul>
+                    <li *ngFor="let _phase of PHASES; trackBy: trackByItems; let i = index" (click)="addOrDeleteElement(PHASES, SELECTED_PHASES, _phase, i, true)">{{ _phase.Name }} <span *ngIf="_phase.Selected">✔</span></li>
+                </ul>
+            </details>
+        </div>
+        <div class="form-group inlineSelect">
+            <label for="phase">Month</label>
+            <details>
+                <summary>Select one or more months {{ SELECTED_MONTHS.length > 0 ? TOTAL_MONTHS : '' }}</summary>
+                <ul>
+                    <li *ngFor="let _month of MONTHS; trackBy: trackByItems; let i = index" (click)="addOrDeleteElement(MONTHS, SELECTED_MONTHS, _month, i, false)">{{ _month.Name }} <span *ngIf="_month.Selected">✔</span></li>
+                </ul>
+            </details>
+        </div>
+        <div class="form-buttons">
+            <button class="cancelButton" type="button" (click)="closeModal('custom-modal-1')">Cancel</button>
+            <button class="acceptButton" type="submit" (click)="closeModalAction('custom-modal-1')">Apply</button>
+        </div>
+    </form>
+</app-modal>

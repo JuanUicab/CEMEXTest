@@ -1,0 +1,28 @@
+<div class="content">
+    <div class="totalContent">
+        <p class="total">Total: {{ TOTAL | number: '.2' }} USD</p>
+    </div>
+
+    <div class="contentTable">
+        <table>
+            <tr>
+                <th *ngFor="let _col of COLUMNS" [ngClass]="{ amount: _col.Type === 'amount'}">
+                    {{ _col.Label }}
+                </th>
+            </tr>
+            <tr *ngFor="let _data of DATA; trackBy: trackByItems">
+                <td>
+                    <div class="contentStatus">
+                        <div [ngClass]="{ statusGreen: _data.Status === '1', statusBlue: _data.Status === '2', statusOrange: _data.Status === '3' }"></div>
+                        {{ _data.Status | status }}
+                    </div>
+                </td>
+                <td>{{ _data.SupplierName }}</td>
+                <td>{{ _data.Month | month }}</td>
+                <td>{{ _data.Phase | phase }}</td>
+                <td>{{ _data.InternalOrder }}</td>
+                <td class="amount">{{ _data.Amount | number: '.2' }}</td>
+            </tr>
+        </table>
+    </div>
+</div>

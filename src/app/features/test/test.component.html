@@ -1,0 +1,4 @@
+<div class="banner"></div>
+<app-header></app-header>
+<app-filters-bar (SEND_NAME)="getFilters($event)"></app-filters-bar>
+<app-generic-table [COLUMNS]="COLUMNS" [DATA]="FILTER_DATA" [TOTAL]="TOTAL"></app-generic-table>

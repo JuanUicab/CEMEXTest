@@ -1,0 +1,438 @@
+@import '../../../../assets/scss/base';
+
+app-modal {
+    display: none;
+
+    .app-modal {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        z-index: 1000;
+
+        overflow: auto;
+
+        .app-modal-body {
+            padding: 25px;
+            background: #fff;
+
+            margin: 30px 300px;
+
+            .title {
+                h1 {
+                    color: $colorTitle;
+                    margin-top: 10px;
+
+                    span {
+                        float: right;
+                        top: 0px;
+                        position: relative;
+                        font-size: 40px;
+                        user-select: none;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            .form-group {
+                margin-bottom: 10px;
+
+                label {
+                    font-size: 12px;
+                    color: $colorSubtitle;
+                    width: 100%;
+                }
+
+                ul {
+                    display: inline-block;
+                    list-style: none;
+                    padding: 0;
+                    margin-top: 5px;
+                    max-height: 100px;
+
+                    li {
+                        display: inline-block;
+                        padding-right: 30px;
+
+                        label {
+                            font-size: 14px;
+                            color: #7e7e7e;
+                        }
+
+                        .container {
+                            display: block;
+                            position: relative;
+                            padding-left: 25px;
+                            margin-bottom: 12px;
+                            cursor: pointer;
+                            font-size: 14px;
+                            -webkit-user-select: none;
+                            -moz-user-select: none;
+                            -ms-user-select: none;
+                            user-select: none;
+                        }
+
+                        .container input {
+                            position: absolute;
+                            opacity: 0;
+                            cursor: pointer;
+                            height: 0;
+                            width: 0;
+                        }
+
+                        .checkmark {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            height: 16px;
+                            width: 16px;
+                            background-color: white;
+                            border: 1px solid #b0b0b0;
+                        }
+
+                        .container:hover input ~ .checkmark {
+                            background-color: white;
+                        }
+
+                        .container input:checked ~ .checkmark {
+                            background-color: #3fa9f5;
+                            border: 1px solid #3fa9f5;
+                        }
+
+                        .checkmark:after {
+                            content: '';
+                            position: absolute;
+                            display: none;
+                        }
+
+                        .container input:checked ~ .checkmark:after {
+                            display: block;
+                        }
+
+                        .container .checkmark:after {
+                            left: 5px;
+                            top: 1px;
+                            width: 3px;
+                            height: 8px;
+                            border: solid white;
+                            border-width: 0 3px 3px 0;
+                            -webkit-transform: rotate(45deg);
+                            -ms-transform: rotate(45deg);
+                            transform: rotate(45deg);
+                        }
+                    }
+                }
+
+                &.inlineSelect {
+                    display: inline-block;
+                    width: 30%;
+                    margin: 0 10px 30px 0;
+
+                    details {
+                        position: relative;
+                        width: 300px;
+                        margin-right: 1rem;
+                        margin-top: 10px;
+                    }
+
+                    details[open] {
+                        z-index: 1;
+                    }
+
+                    summary {
+                        padding: 10px;
+                        cursor: pointer;
+                        border-radius: 5px;
+                        background-color: white;
+                        border: 1px solid #b0b0b0;
+                        list-style: none;
+                    }
+
+                    summary::-webkit-details-marker {
+                        display: none;
+                    }
+
+                    details[open] summary:before {
+                        content: '';
+                        display: block;
+                        width: 100vw;
+                        height: 100vh;
+                        background: transparent;
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                    }
+
+                    summary:after {
+                        content: '';
+                        display: inline-block;
+                        float: right;
+                        width: 0.5rem;
+                        height: 0.5rem;
+                        border-bottom: 2px solid currentColor;
+                        border-left: 2px solid currentColor;
+                        border-bottom-left-radius: 2px;
+                        transform: rotate(45deg) translate(50%, 0%);
+                        transform-origin: center center;
+                        transition: transform ease-in-out 100ms;
+                        color: #3fa9f5;
+                    }
+
+                    summary:focus {
+                        outline: none;
+                    }
+
+                    details[open] summary:after {
+                        transform: rotate(-45deg) translate(0%, 0%);
+                    }
+
+                    ul {
+                        width: 100%;
+                        background: white;
+                        position: absolute;
+                        left: 0;
+                        padding: 20px;
+                        margin: 0;
+                        box-sizing: border-box;
+                        border-radius: 5px;
+                        max-height: fit-content;
+                        overflow-y: auto;
+                        border-top: 2px solid #3fa9f5;
+                        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+                        user-select: none;
+                        overflow: auto;
+                        max-height: 200px;
+                    }
+
+                    li {
+                        margin: 0;
+                        padding: 10px 0;
+                        width: 100%;
+
+                        span {
+                            float: right;
+                            position: relative;
+                        }
+                    }
+
+                    li:first-child {
+                        padding-top: 0;
+                    }
+
+                    li:last-child {
+                        padding-bottom: 0;
+                        border-bottom: none;
+                    }
+
+                    summary.radios {
+                        counter-reset: radios;
+                    }
+
+                    input[type='radio'] {
+                        counter-increment: radios;
+                        appearance: none;
+                        display: none;
+                    }
+
+                    input[type='radio']:checked {
+                        display: inline;
+                        border: 1px solid transparent;
+                    }
+
+                    input[type='radio']:after {
+                        content: attr(title);
+                        display: inline;
+                        font-size: 1rem;
+                        border: 1px solid transparent;
+                    }
+
+                    ul.list {
+                        counter-reset: labels;
+                    }
+
+                    label {
+                        width: 100%;
+                        display: block;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            .form-buttons {
+                text-align: right;
+                .acceptButton {
+                    background-color: #3fa9f5;
+                    border: 1px solid #3fa9f5;
+                    color: white;
+                }
+
+                .cancelButton {
+                    background-color: white;
+                    border: 1px solid #3fa9f5;
+                    color: #3fa9f5;
+                    margin-right: 20px;
+                }
+
+                .acceptButton,
+                .cancelButton {
+                    padding: 5px 25px;
+                    font-size: 16px;
+                    width: 100px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .app-modal-background {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        background-color: #000;
+        opacity: 0.5;
+
+        z-index: 900;
+    }
+}
+
+body.app-modal-open {
+    overflow: hidden;
+}
+
+@media (min-width: $mq-mobile-device) {
+    app-modal {
+        display: none;
+
+        .app-modal {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+
+            z-index: 1000;
+
+            overflow: auto;
+
+            .app-modal-body {
+                padding: 25px;
+                background: #fff;
+
+                margin: 10%;
+
+                h1 {
+                    color: $colorTitle;
+                    margin-top: 10px;
+                }
+
+                .form-group {
+                    ul {
+                        display: inline-block;
+                    }
+
+                    &.inlineSelect {
+                        display: unset;
+                        width: 30%;
+                        margin: 0 10px 30px 0;
+
+                        details {
+                            position: relative;
+                            margin-right: 1.5rem;
+                            margin-top: 10px;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: $mq-pc-1024) {
+    app-modal {
+        .app-modal {
+            .app-modal-body {
+                margin: 20% 10%;
+                .form-group {
+                    ul {
+                        display: inline-block;
+                    }
+
+                    &.inlineSelect {
+                        display: inline-table;
+                        width: 45%;
+                        margin: 0 30px 30px 0;
+
+                        details {
+                            position: relative;
+                            margin-right: 1.5rem;
+                            margin-top: 10px;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: $mq-pc-lg) {
+    app-modal {
+        .app-modal {
+            .app-modal-body {
+                margin: 20px 280px;
+                .form-group {
+                    ul {
+                        display: inline-block;
+                    }
+
+                    &.inlineSelect {
+                        display: inline-table;
+                        width: 35%;
+                        margin: 0 30px 30px 0;
+
+                        details {
+                            position: relative;
+                            margin-right: 1.5rem;
+                            margin-top: 10px;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: $mq-pc-xl) {
+    app-modal {
+        .app-modal {
+            .app-modal-body {
+                margin: 20px 300px;
+                .form-group {
+                    ul {
+                        display: inline-block;
+                    }
+
+                    &.inlineSelect {
+                        display: inline-table;
+                        width: 30%;
+                        margin: 0 10px 30px 0;
+
+                        details {
+                            position: relative;
+                            margin-right: 1.5rem;
+                            margin-top: 10px;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
